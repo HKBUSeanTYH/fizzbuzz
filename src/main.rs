@@ -6,6 +6,11 @@ fn main() {
 
 struct Trigger{
     predicate: Box<dyn Fn(i32) -> bool>,
+    /*
+        > no two closures, even if identical, have the same type
+        > consider boxing your closure and/or using it as a trait object
+        because of this, use a Box with trait object in order to store the closure inside Trigger
+    */
     output: String,
 }
 
