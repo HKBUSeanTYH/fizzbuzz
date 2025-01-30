@@ -30,8 +30,16 @@ fn fizzbuzz<T: Iterator<Item=i32>>(range: T, triggers: Vec<Trigger>) {
             }
             /*
                 FnOnce can only be called once. cannot move out of `elem.predicate` which is behind a shared reference.
-                The predicate does not capture and can be called multiple times, change to Fn to fix, but why does it fix?
-                look into this later
+                The predicate does not capture and can be called multiple times, change to Fn to fix
+
+                Closures can capture values from their environment in three ways, which directly map to the three ways a function can take a parameter: 
+                - borrowing immutably 
+                - borrowing mutably
+                - taking ownership
+
+                Fn - Borrows arguments and captured variables from environment immutably
+                FnMut - Borrows arguments and captured variables from environment mutably
+                FnOnce - Takes ownership of arguments and captured variables from environment
             */
         }
         println!("{i}: {output}");
