@@ -1,5 +1,5 @@
 fn main() {
-    let triggers = vec![Trigger::new(String::from("Fizz"), Box::new(|x| {x % 5 == 0})), 
+    let mut triggers = vec![Trigger::new(String::from("Fizz"), Box::new(|x| {x % 5 == 0})), 
                                       Trigger::new(String::from("Buzz"), Box::new(|x|{ x % 7 == 0}))];
     fizzbuzz(0..=10, triggers);
 }
@@ -37,9 +37,12 @@ fn fizzbuzz<T: Iterator<Item=i32>>(range: T, triggers: Vec<Trigger>) {
                 - borrowing mutably
                 - taking ownership
 
-                Fn - Borrows arguments and captured variables from environment immutably
-                FnMut - Borrows arguments and captured variables from environment mutably
-                FnOnce - Takes ownership of arguments and captured variables from environment
+                Fn call(&self, args: Args) - Borrows captured variables from environment immutably
+                FnMut call_mut(&mut self, args: Args) - Borrows captured variables from environment mutably
+                FnOnce call_once(self, args: Args) - Takes ownership of captured variables from environment
+
+                *captured arguments not just only refers to environment variables, but also refers to the instance of the closure itself (self)
+                *takes arguments by value
             */
         }
         println!("{i}: {output}");
