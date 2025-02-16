@@ -1,5 +1,5 @@
 fn main() {
-    let mut triggers = vec![Trigger::new(String::from("Fizz"), Box::new(|x| {x % 5 == 0})), 
+    let triggers = vec![Trigger::new(String::from("Fizz"), Box::new(|x| {x % 5 == 0})), 
                                       Trigger::new(String::from("Buzz"), Box::new(|x|{ x % 7 == 0}))];
     fizzbuzz(0..=10, triggers);
 }
